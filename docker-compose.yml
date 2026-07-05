@@ -1,0 +1,43 @@
+services:
+  traefik:
+    image: traefik:v3.3
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  user-service:
+    build:
+      context: .
+      dockerfile: services/user-service/Dockerfile
+    expose:
+      - "8000"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.user-service.rule=PathPrefix(`/auth`) || PathPrefix(`/me`)"
+      - "traefik.http.routers.user-service.entrypoints=web"
+      - "traefik.http.services.user-service.loadbalancer.server.port=8000"
+    env_file:
+      - services/user-service/.env
+    depends_on:
+      - user-db
+
+  user-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: trend
+      POSTGRES_PASSWORD: trend
+      POSTGRES_DB: trend_bouttique
+    ports:
+      - "5432:5432"
+    volumes:
+      - user-db-data:/var/lib/postgresql/data
+
+volumes:
+  user-db-data:
