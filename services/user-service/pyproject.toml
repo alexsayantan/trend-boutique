@@ -1,0 +1,17 @@
+[project]
+name = "user-service"
+version = "0.1.0"
+requires-python = ">=3.14"
+dependencies = [
+    "shared",
+    "fastapi[standard]>=0.136.0",
+    "asyncpg>=0.31.0",
+    "sqlalchemy>=2.0.51",
+    "alembic>=1.18.4",
+    "bcrypt>=5.0.0",
+    "python-jose>=3.5.0",
+    "pydantic[email]>=2.13.0",
+    "pydantic-settings>=2.14.0",
+    "python-multipart>=0.0.32",
+    "aiosqlite>=0.22.1",
+]
