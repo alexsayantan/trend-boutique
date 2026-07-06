@@ -25,19 +25,3 @@ services:
       - "traefik.http.services.user-service.loadbalancer.server.port=8000"
     env_file:
       - services/user-service/.env
-    depends_on:
-      - user-db
-
-  user-db:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_USER: trend
-      POSTGRES_PASSWORD: trend
-      POSTGRES_DB: trend_bouttique
-    ports:
-      - "5432:5432"
-    volumes:
-      - user-db-data:/var/lib/postgresql/data
-
-volumes:
-  user-db-data:
