@@ -1,0 +1,51 @@
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.cache/
+
+# Virtual environments (local dev environments)
+.venv/
+venv/
+env/
+bin/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+secrets.json
+
+# Git and version control
+.git/
+.gitignore
+.gitattributes
+
+# Docker files (often excluded if not needed inside the image)
+Dockerfile
+docker-compose.yml
+docker-compose.*.yml
+.docker/
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Tests and Coverage
+tests/
+.coverage
+htmlcov/
+nosetests.xml
+coverage.xml
+
+# Distribution and Build artifacts
+dist/
+build/
+*.egg-info/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
