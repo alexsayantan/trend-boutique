@@ -25,3 +25,12 @@ services:
       - "traefik.http.services.user-service.loadbalancer.server.port=8000"
     env_file:
       - services/user-service/.env
+
+  storage-service:
+    build:
+      context: .
+      dockerfile: services/storage-service/Dockerfile
+    expose:
+      - "50051"
+    env_file:
+      - services/storage-service/.env
