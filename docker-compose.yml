@@ -26,6 +26,20 @@ services:
     env_file:
       - services/user-service/.env
 
+  cart-service:
+    build:
+      context: .
+      dockerfile: services/cart-service/Dockerfile
+    expose:
+      - "8000"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.cart-service.rule=PathPrefix(`/cart`)"
+      - "traefik.http.routers.cart-service.entrypoints=web"
+      - "traefik.http.services.cart-service.loadbalancer.server.port=8000"
+    env_file:
+      - services/cart-service/.env
+
   storage-service:
     build:
       context: .
