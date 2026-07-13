@@ -1,4 +1,15 @@
 services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: trend
+      POSTGRES_PASSWORD: trend
+      POSTGRES_DB: trend_boutique
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
   traefik:
     image: traefik:v3.3
     command:
@@ -18,6 +29,8 @@ services:
       dockerfile: services/user-service/Dockerfile
     expose:
       - "8000"
+    depends_on:
+      - postgres
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.user-service.rule=PathPrefix(`/auth`) || PathPrefix(`/me`)"
@@ -32,6 +45,8 @@ services:
       dockerfile: services/cart-service/Dockerfile
     expose:
       - "8000"
+    depends_on:
+      - postgres
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.cart-service.rule=PathPrefix(`/cart`)"
@@ -48,3 +63,6 @@ services:
       - "50051"
     env_file:
       - services/storage-service/.env
+
+volumes:
+  postgres_data:

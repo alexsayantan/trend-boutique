@@ -19,6 +19,7 @@ dependencies = [
 members = [
     "services/cart-service",
     "services/user-service",
+    "services/storage-service",
     "shared",
 ]
 
