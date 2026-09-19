@@ -11,8 +11,7 @@ dependencies = [
     "python-jose>=3.5.0",
     "pydantic[email]>=2.13.0",
     "pydantic-settings>=2.14.0",
-    "python-multipart>=0.0.32",
-    "aiosqlite>=0.22.1",
+    "python-multipart>=0.0.32"
 ]
 
 [tool.uv.workspace]
@@ -20,6 +19,7 @@ members = [
     "services/cart-service",
     "services/user-service",
     "services/storage-service",
+    "services/product-service",
     "shared",
 ]
 

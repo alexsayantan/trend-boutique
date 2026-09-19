@@ -1,0 +1,22 @@
+[project]
+name = "product-service"
+version = "0.1.0"
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi[standard]>=0.136.0",
+    "asyncpg>=0.31.0",
+    "sqlalchemy>=2.0.51",
+    "alembic>=1.18.4",
+    "pydantic-settings>=2.14.0",
+    "grpcio>=1.68.0",
+    "grpcio-tools>=1.68.0",
+    "aio-pika>=9.5.0",
+    "shared",
+]
+
+[tool.uv]
+managed = true
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
